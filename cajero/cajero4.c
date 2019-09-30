@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double change_sign(double a) {
+double change_signd(double a) {
     if (a != 0) {a = a*(-1);}
     return a;
 }
@@ -27,7 +27,7 @@ int cajero(double in, double total, int confirm, double totald, int nc, double f
         falta -= in;
     }
 
-    printf("Total entregado: %.2lfE, cambio: %.2lfE\n", total+change_sign(falta), change_sign(falta));
+    printf("Total entregado: %.2lfE, cambio: %.2lfE\n", total+change_signd(falta), change_signd(falta));
 
     printf("Otro cliente? (0/1): ");
     scanf("%d", &confirm);
