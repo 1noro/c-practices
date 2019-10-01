@@ -1,13 +1,17 @@
+// console/main.c
+// (c) inoro 2019, GPLv3.
 
+// my includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// my definitions
+#define CSIZE       20
+
 #define OK          0
 #define NO_IN       1
 #define IN_TOO_LONG 2
-
-#define CSIZE       20
 
 // my .h files
 #include "gen_utils.h"
@@ -45,7 +49,7 @@ int main(int argc, char const *argv[]) {
         err = getLine (prompt, buff, sizeof(buff));
         err = control_in(err, buff);
         if (err == 0) err = cmd_parser(buff);
-        
+
         // exit cmd
         if (err == 2) {
             printf("Bye (~‾▿‾)~\n");

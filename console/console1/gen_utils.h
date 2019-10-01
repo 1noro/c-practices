@@ -1,3 +1,5 @@
+// console/gen_utils.h
+// (c) inoro 2019, GPLv3.
 
 static int getLine (char *prmpt, char *buff, size_t sz) {
     int ch, extra;
