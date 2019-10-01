@@ -12,31 +12,45 @@
 // my .h files
 #include "gen_utils.h"
 
-int control_in(int rc, char *buff) {
-    if (rc == NO_IN) {
+int control_in(int err, char *buff) {
+    if (err == NO_IN) {
         // Extra NL since my system doesn't output that on EOF.
         printf("\nNo input\n");
         return 1;
     }
 
-    if (rc == IN_TOO_LONG) {
+    if (err == IN_TOO_LONG) {
         printf ("Input too long [%s]\n", buff);
         return 1;
     }
 
-    printf ("OK [%s]\n", buff);
+    // printf ("OK [%s]\n", buff);
+    return 0;
+}
+
+int cmd_parser(char *buff) {
     if (strcmp(buff, "exit") == 0) return 2;
+    if (strcmp(buff, "hello") == 0) {
+        printf("Hy, nice to see you.\n");
+    }
     return 0;
 }
 
 int main(int argc, char const *argv[]) {
-    int rc = 0, err = 0;
+    int err = 0;
+    char prompt[] = "> ";
     char buff[CSIZE] = "";
 
     while (1) {
-        rc = getLine ("> ", buff, sizeof(buff));
-        err = control_in(rc, buff);
-        if (err == 2) break;
+        err = getLine (prompt, buff, sizeof(buff));
+        err = control_in(err, buff);
+        if (err == 0) err = cmd_parser(buff);
+        
+        // exit cmd
+        if (err == 2) {
+            printf("Bye (~‾▿‾)~\n");
+            break;
+        }
     }
 
     return 0;
