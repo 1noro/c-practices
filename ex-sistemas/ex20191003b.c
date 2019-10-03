@@ -11,13 +11,17 @@ int main(int argc, char const *argv[]) {
     printf("Día: "); scanf("%d", &d);
 
     if ((a >= 1) && (a <= 2999) && (m >= 1) && (m <= 12) && (d >= 1)) {
+        // 31d
         if ((m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) && d <= 31) {
             out = 1;
         }
+        // 30d
         if ((m == 4 || m == 6 || m == 9 || m == 11) && d <= 30) {
             out = 1;
         }
+        // 28/29d
         if (m == 2) {
+            // años bisiestos
             if ( (a%4 == 0) && ((a%100 != 0) || (a%400 == 0)) ) {
                 if (d <= 29) {
                     out = 1;
